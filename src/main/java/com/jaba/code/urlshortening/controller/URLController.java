@@ -1,5 +1,6 @@
 package com.jaba.code.urlshortening.controller;
 
+import com.jaba.code.urlshortening.model.Shorten;
 import com.jaba.code.urlshortening.service.URLEncodeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class URLController {
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public String generateShortUrl(@RequestParam(name = "url") String url) {
+  public Shorten generateShortUrl(@RequestParam(name = "url") String url) {
 
     LOGGER.info("Start generate short URL for: {}", url);
     return urlEncodeService.encodeURL(url);
