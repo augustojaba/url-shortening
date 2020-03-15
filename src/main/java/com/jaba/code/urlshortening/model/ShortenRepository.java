@@ -2,6 +2,9 @@ package com.jaba.code.urlshortening.model;
 
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.UUID;
+public interface ShortenRepository extends CrudRepository<Shorten, String> {
 
-public interface ShortenRepository extends CrudRepository<Shorten, UUID> {}
+  Shorten findByToken(String token);
+
+  Shorten findByLongUrl(String longUrl);
+}

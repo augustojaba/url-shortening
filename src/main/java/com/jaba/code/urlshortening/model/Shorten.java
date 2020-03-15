@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 public class Shorten {
@@ -15,12 +14,13 @@ public class Shorten {
   @Id
   @GeneratedValue(generator = "uuid2")
   @GenericGenerator(name = "uuid2", strategy = "uuid2")
-  @Column(columnDefinition = "BINARY(16)")
-  private UUID id;
+  @Column(columnDefinition = "CHAR(36)")
+  private String id;
 
+  @Column(unique = true)
   private String token;
 
-  @Column(name = "long_url")
+  @Column(name = "long_url", unique = true)
   private String longUrl;
 
   @Column(name = "created_at", columnDefinition = "TIMESTAMP")
@@ -38,7 +38,7 @@ public class Shorten {
     this.expiryAt = expiryAt;
   }
 
-  public UUID getId() {
+  public String getId() {
     return id;
   }
 
