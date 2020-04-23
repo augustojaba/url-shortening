@@ -1,0 +1,7 @@
+secretGenerator:
+  - name: mysql-pass
+    literals:
+      - password=ayabrea123
+resources:
+  - mysql-deployment.yaml
+  - urlshrt-deployment.yaml

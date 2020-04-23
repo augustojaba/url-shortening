@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: urlshrt
+  labels:
+    app: urlshrt
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: urlshrt
+    tier: backend
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urlshrt
+  labels:
+    app: urlshrt
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: urlshrt
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: urlshrt
+        tier: backend
+    spec:
+      containers:
+        - image: jabacode/url-shortening
+          name: urlshrt
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+              name: urlshrt

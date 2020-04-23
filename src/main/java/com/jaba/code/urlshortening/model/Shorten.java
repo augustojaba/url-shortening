@@ -26,16 +26,16 @@ public class Shorten {
   @Column(name = "created_at", columnDefinition = "TIMESTAMP")
   private LocalDateTime createdAt;
 
-  @Column(name = "expiry_at", columnDefinition = "TIMESTAMP")
-  private LocalDateTime expiryAt;
+  @Column(name = "expire_at", columnDefinition = "TIMESTAMP")
+  private LocalDateTime expireAt;
 
   protected Shorten() {}
 
-  public Shorten(String token, String longUrl, LocalDateTime createdAt, LocalDateTime expiryAt) {
+  public Shorten(String token, String longUrl, LocalDateTime createdAt, LocalDateTime expireAt) {
     this.token = token;
     this.longUrl = longUrl;
     this.createdAt = createdAt;
-    this.expiryAt = expiryAt;
+    this.expireAt = expireAt;
   }
 
   public String getId() {
@@ -54,7 +54,7 @@ public class Shorten {
     return createdAt;
   }
 
-  public LocalDateTime getExpiryAt() {
-    return expiryAt;
+  public LocalDateTime getExpireAt() {
+    return expireAt;
   }
 }
