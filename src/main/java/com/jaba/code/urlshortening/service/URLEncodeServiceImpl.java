@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
-
 @Service
 public class URLEncodeServiceImpl implements URLEncodeService {
 
@@ -33,8 +31,7 @@ public class URLEncodeServiceImpl implements URLEncodeService {
     long id = generateId.nextID();
     LOGGER.info("Generating HASHID for the id {}", id);
     String token = hashids.encode(id);
-    Shorten shorten =
-        new Shorten(token, url, LocalDateTime.now(), LocalDateTime.now().plusDays(100));
+    Shorten shorten = new Shorten(token, url);
     shortenRepository.save(shorten);
 
     return shorten;

@@ -31,11 +31,11 @@ public class Shorten {
 
   protected Shorten() {}
 
-  public Shorten(String token, String longUrl, LocalDateTime createdAt, LocalDateTime expireAt) {
+  public Shorten(String token, String longUrl) {
     this.token = token;
     this.longUrl = longUrl;
-    this.createdAt = createdAt;
-    this.expireAt = expireAt;
+    createdAt = LocalDateTime.now();
+    expireAt = LocalDateTime.now().plusDays(100);
   }
 
   public String getId() {
