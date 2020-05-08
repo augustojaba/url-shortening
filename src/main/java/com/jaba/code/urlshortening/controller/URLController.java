@@ -28,7 +28,7 @@ public class URLController {
 
   @GetMapping
   public void redirectShortUrl(
-          @RequestParam(name = "token") String token, HttpServletResponse response) throws IOException {
+      @RequestParam(name = "token") String token, HttpServletResponse response) throws IOException {
     LOGGER.info("Redirect short url");
     Shorten decodedUrl = urlEncodeService.decodeShortUrl(token);
     LOGGER.info("Url to redirect {}", decodedUrl.getLongUrl());
@@ -38,7 +38,7 @@ public class URLController {
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Shorten> generateShortUrl(@RequestParam(name = "url") String url) {
     LOGGER.info("Start generate short URL for: {}", url);
-    Shorten shortenAlreadyExists = urlEncodeService.findLonUrl(url);
+    Shorten shortenAlreadyExists = urlEncodeService.findLongUrl(url);
     if (shortenAlreadyExists != null && StringUtils.isNotBlank(shortenAlreadyExists.getLongUrl())) {
       return new ResponseEntity<>(shortenAlreadyExists, HttpStatus.OK);
     }

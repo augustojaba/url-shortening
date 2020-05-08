@@ -7,5 +7,5 @@ public interface URLEncodeService {
 
   Shorten decodeShortUrl(String token);
 
-  Shorten findLonUrl(String longUrl);
+  Shorten findLongUrl(String longUrl);
 }
